@@ -18,7 +18,7 @@ if ($autoinstall -eq "y") {
     $device = $devices.Split([Environment]::NewLine)[1].Split()[0].Trim()
     if ($device) {
 	    Write-Host "Found device with name: $device"
-        $devicecmd = "-d $device"
+        $devicecmd = "--device-serial $device"
 		Read-Host "Now look at your device and grant access with the popup that is currently in view. Press enter when ready"
     } else {
         Read-Host "No connected device found. Try to unlock your device first."
@@ -59,6 +59,6 @@ if ($skipdownload -eq "n") {
 }
 
 Write-Host "Now we start compiling YouTube Revanced and if specified automatically install it on your device. Please be patient."
-java -jar revanced-cli-all.jar -a YouTube.apk -c $($devicecmd) -o YouTubeMod.apk -b revanced-patches.jar -m app-release-unsigned.apk
+java -jar revanced-cli-all.jar patch --patch-bundle revanced-patches.jar --out YouTubeMod.apk $($devicecmd) --merge app-release-unsigned.apk YouTube.apk
 
 Read-Host "Done! Check the above output for errors if any. Otherwise, you may disconnect your device now and launch the app. Have fun!"
