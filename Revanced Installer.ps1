@@ -64,7 +64,7 @@ if ($dodownload -ne "n") {
 
 Write-Host "Now we start compiling YouTube Revanced and if specified automatically install it on your device. Please be patient."
 
-Invoke-Expression "java -jar revanced-cli-all.jar patch -p revanced-patches.rvp --out YouTubeMod.apk $devicecmd YouTube.apk"
+Invoke-Expression "java -jar revanced-cli-all.jar patch -bp revanced-patches.rvp --out YouTubeMod.apk $devicecmd YouTube.apk"
 
 Write-Host "Done! Check the above output for errors if any."
 if ($autoinstall -ne "n") {
